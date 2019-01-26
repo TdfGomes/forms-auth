@@ -1,0 +1,32 @@
+{
+  "name": "forms-auth",
+  "version": "0.0.1",
+  "description": "koa server, with a login endpoint ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/TdfGomes/forms-auth.git"
+  },
+  "keywords": [
+    "koa",
+    "auth",
+    "node",
+    "api",
+    "mongo",
+    "docker"
+  ],
+  "author": "Tiago Gomes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TdfGomes/forms-auth/issues"
+  },
+  "homepage": "https://github.com/TdfGomes/forms-auth#readme",
+  "dependencies": {
+    "koa": "^2.6.2",
+    "koa-bodyparser": "^4.2.1",
+    "koa-joi-router": "^5.2.0"
+  }
+}
