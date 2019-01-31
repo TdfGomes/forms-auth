@@ -1,13 +1,40 @@
 const Koa = require('koa')
-const router = require('koa-joi-router')
-
-const auth = router()
-
-auth.get('/', async (ctx) => {
-  console.log('LOGGING')
-  ctx.body = 'Hello World!'
-})
+const Router = require('koa-router')
+const graphqlHTTP = require('koa-graphql')
+const { GraphQLObjectType, GraphQLSchema, GraphQLString } = require('graphql')
+// const schema = require('./src/schemas')
+// const root = require('./src/resolvers')
 
 const app = new Koa()
-app.use(auth.middleware())
-app.listen(8080)
+const router = new Router()
+
+const queryType = new GraphQLObjectType({
+  name: 'Query',
+  fields: {
+    message: {
+      type: GraphQLString
+    }
+  }
+})
+const schema = new GraphQLSchema({
+  query: queryType
+})
+
+const root = {
+  message: () => 'Hello World!'
+}
+
+router.all(
+  '/graphql',
+  graphqlHTTP({
+    schema,
+    rootValue: root,
+    graphiql: true
+  })
+)
+
+app
+  .use(router.routes())
+  .use(router.allowedMethods())
+
+app.listen(9090, () => console.log('Server Running....'))

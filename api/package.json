@@ -4,7 +4,7 @@
   "description": "koa server, with a login endpoint ",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -25,9 +25,11 @@
   },
   "homepage": "https://github.com/TdfGomes/forms-auth#readme",
   "dependencies": {
+    "graphql": "^14.1.1",
     "koa": "^2.6.2",
     "koa-bodyparser": "^4.2.1",
-    "koa-joi-router": "^5.2.0"
+    "koa-graphql": "^0.8.0",
+    "koa-router": "^7.4.0"
   },
   "devDependencies": {
     "eslint": "^5.12.1",
@@ -35,6 +37,7 @@
     "eslint-plugin-import": "^2.15.0",
     "eslint-plugin-node": "^8.0.1",
     "eslint-plugin-promise": "^4.0.1",
-    "eslint-plugin-standard": "^4.0.0"
+    "eslint-plugin-standard": "^4.0.0",
+    "nodemon": "^1.18.9"
   }
 }
