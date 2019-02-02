@@ -10,12 +10,16 @@ services:
           NODE_ENV: development
       ports:
         - 3000:3000
+  database:
+
   api:
       build:
         context: ../api
         dockerfile: Dockerfile
       volumes:
         - ../api/src/:/home/node/api/src
+      depends_on:
+        - database
       environment:
           NODE_ENV: development
       ports:
