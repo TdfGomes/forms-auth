@@ -1,30 +1,10 @@
 const Koa = require('koa')
 const Router = require('koa-router')
 const graphqlHTTP = require('koa-graphql')
-const {
-  GraphQLObjectType,
-  GraphQLSchema,
-  GraphQLString,
-  GraphQLNonNull
-} = require('graphql')
-// const schema = require('./src/schemas')
-// const root = require('./src/resolvers')
+const schema = require('./src/schemas')
 
 const app = new Koa()
 const router = new Router()
-
-const queryType = new GraphQLObjectType({
-  name: 'Query',
-  fields: {
-    message: {
-      type: new GraphQLNonNull(GraphQLString),
-      resolve: () => 'Hello World!'
-    }
-  }
-})
-const schema = new GraphQLSchema({
-  query: queryType
-})
 
 router.all(
   '/graphql',

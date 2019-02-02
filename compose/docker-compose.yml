@@ -1,0 +1,22 @@
+version: '3'
+services:
+  app:
+      build:
+        context: ../app
+        dockerfile: Dockerfile
+      volumes:
+        - ../app/src/:/home/node/app/src
+      environment:
+          NODE_ENV: development
+      ports:
+        - 3000:3000
+  api:
+      build:
+        context: ../api
+        dockerfile: Dockerfile
+      volumes:
+        - ../api/src/:/home/node/api/src
+      environment:
+          NODE_ENV: development
+      ports:
+          - 9090:9090
