@@ -11,7 +11,9 @@ services:
       ports:
         - 3000:3000
   database:
-
+    image: mongo
+    ports:
+      - "27017:27017"
   api:
       build:
         context: ../api
