@@ -15,6 +15,7 @@ services:
     ports:
       - "27017:27017"
   api:
+      command: sh watch.sh
       build:
         context: ../api
         dockerfile: Dockerfile
