@@ -30,7 +30,7 @@ const createServer = async () => {
     console.log('Error', error)
   })
 
-  console.log('Server created.')
+  console.log('Server created!')
 
   return server
 }

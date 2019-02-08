@@ -1,10 +1,10 @@
 {
   "name": "forms-auth",
   "version": "0.0.1",
-  "description": "koa server, with a login endpoint ",
-  "main": "index.js",
+  "description": "koa server, with graphql api",
+  "main": "run.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon run.js"
   },
   "repository": {
     "type": "git",
