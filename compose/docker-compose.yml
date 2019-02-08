@@ -12,10 +12,12 @@ services:
         - 3000:3000
   database:
     image: mongo
+    restart: always
     ports:
       - "27017:27017"
+    command: mongod --auth
+
   api:
-      command: sh watch.sh
       build:
         context: ../api
         dockerfile: Dockerfile
@@ -23,7 +25,13 @@ services:
         - ../api/src/:/home/node/api/src
       depends_on:
         - database
+      links:
+        - database
+      env_file: .env
       environment:
           NODE_ENV: development
+          DB_HOST: "$DB_HOST"
+          DB_USER: "$DB_USER"
+          DB_PASS: "$DB_PASS"
       ports:
           - 9090:9090
