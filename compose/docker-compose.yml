@@ -12,10 +12,23 @@ services:
         - 3000:3000
   database:
     image: mongo
+    container_name: database
     restart: always
     ports:
       - "27017:27017"
-    command: mongod --auth
+    env_file: .env
+    environment:
+        MONGO_INITDB_ROOT_USERNAME: "$MONGO_ROOT_USERNAME"
+        MONGO_INITDB_ROOT_PASSWORD: "$MONGO_ROOT_PASSWORD"
+        MONGO_ROOT_USER: "$MONGO_ROOT_USERNAME"
+        MONGO_ROOT_PASS: "$MONGO_ROOT_PASSWORD"
+        DB_NAME: "$DB_NAME"
+        DB_USER: "$DB_USER"
+        DB_PASS: "$DB_PASS"
+        DB_HOST: "$DB_HOST"
+        DB_PORT: "$DB_PORT"
+    # volumes:
+    #   - "./bin/docker/mongoinit.sh/:/docker-entrypoint-initdb.d/"
 
   api:
       build:
@@ -30,8 +43,11 @@ services:
       env_file: .env
       environment:
           NODE_ENV: development
-          DB_HOST: "$DB_HOST"
+          DB_NAME: "$DB_NAME"
           DB_USER: "$DB_USER"
           DB_PASS: "$DB_PASS"
+          DB_HOST: "$DB_HOST"
+          DB_PORT: "$DB_PORT"
+          WAIT_HOSTS: database:27017
       ports:
           - 9090:9090
