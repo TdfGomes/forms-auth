@@ -1,14 +1,11 @@
 const assert = require('assert')
 const createServer = require('./server')
-const mongoose = require('mongoose')
+const dbConnect = require('../src/db/start')
 
 const runApp = async () => {
   const app = await createServer()
   try {
-    mongoose.connect('mongodb://database:27017/myapp', { useNewUrlParser: true }).then(
-      () => { console.log('=============================connected to database========================================= ') },
-      err => { console.log('ERROR==========================================================', err) }
-    )
+    await dbConnect()
     await app.listen(9090, err => {
       assert(!err, err)
       console.log('SERVER RUNNING')

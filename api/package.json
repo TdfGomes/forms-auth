@@ -29,6 +29,7 @@
     "koa": "^2.6.2",
     "koa-bodyparser": "^4.2.1",
     "koa-graphql": "^0.8.0",
+    "koa-mongo": "^1.6.0",
     "koa-router": "^7.4.0",
     "mongoose": "^5.4.9"
   },
