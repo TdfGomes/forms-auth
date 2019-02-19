@@ -1,54 +1,56 @@
 version: '3'
 services:
-  app:
-      build:
-        context: ../app
-        dockerfile: Dockerfile
-      volumes:
-        - ../app/src/:/home/node/app/src
-      environment:
-          NODE_ENV: development
-      ports:
-        - 3000:3000
   database:
     image: mongo:latest
     container_name: database
-    restart: always
     ports:
       - "27017:27017"
+  dbClient:
+    image: mongo:latest
+    container_name: dbClient
     env_file: .env
     environment:
-        MONGO_INITDB_ROOT_USERNAME: "$MONGO_ROOT_USERNAME"
-        MONGO_INITDB_ROOT_PASSWORD: "$MONGO_ROOT_PASSWORD"
-        MONGO_ROOT_USERNAME: "$MONGO_ROOT_USERNAME"
-        MONGO_ROOT_PASSWORD: "$MONGO_ROOT_PASSWORD"
+      MONGO_INITDB_ROOT_USERNAME: "$MONGO_ROOT_USERNAME"
+      MONGO_INITDB_ROOT_PASSWORD: "$MONGO_ROOT_PASSWORD"
+      DB_NAME: "$DB_NAME"
+      DB_USER: "$DB_USER"
+      DB_PASS: "$DB_PASS"
+      DB_HOST: "$DB_HOST"
+      DB_PORT: "$DB_PORT"
+    links:
+      - database:mongo
+    command: mongo --host $DB_HOST --eval  "db.getSiblingDB('$DB_NAME').createUser({user:'$DB_USER', pwd:'$DB_PASS', roles:[{role:'dbOwner',db:'$DB_NAME'}]});"
+    depends_on:
+      - database
+  api:
+    build:
+      context: ../api
+      dockerfile: Dockerfile
+    volumes:
+      - ../api/src/:/home/node/api/src
+    links:
+      - database:mongo
+    depends_on:
+      - dbClient
+    env_file: .env
+    environment:
+        NODE_ENV: development
         DB_NAME: "$DB_NAME"
         DB_USER: "$DB_USER"
         DB_PASS: "$DB_PASS"
         DB_HOST: "$DB_HOST"
         DB_PORT: "$DB_PORT"
+        WAIT_HOSTS: database:27017
+    ports:
+        - 9090:9090
+  app:
+    build:
+      context: ../app
+      dockerfile: Dockerfile
     volumes:
-      - "$PWD/mongo-entrypoint/:/docker-entrypoint-initdb.d/"
-    # command: ./bin/docker/mongoinit.sh
+      - ../app/src/:/home/node/app/src
+    environment:
+        NODE_ENV: development
+    ports:
+      - 3000:3000
 
-  api:
-      build:
-        context: ../api
-        dockerfile: Dockerfile
-      volumes:
-        - ../api/src/:/home/node/api/src
-      depends_on:
-        - database
-      links:
-        - database
-      env_file: .env
-      environment:
-          NODE_ENV: development
-          DB_NAME: "$DB_NAME"
-          DB_USER: "$DB_USER"
-          DB_PASS: "$DB_PASS"
-          DB_HOST: "$DB_HOST"
-          DB_PORT: "$DB_PORT"
-          WAIT_HOSTS: database:27017
-      ports:
-          - 9090:9090
