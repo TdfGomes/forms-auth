@@ -1,4 +1,7 @@
 FROM node:10.12-alpine
+
+RUN apk --update --no-cache add alpine-sdk git python openssl curl bash && \
+  rm -rf /tmp/* /var/cache/apk/*
   
 ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait /wait
 
