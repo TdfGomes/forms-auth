@@ -3,9 +3,11 @@ const Koa = require('koa')
 const Router = require('koa-router')
 const graphqlHTTP = require('koa-graphql')
 const { schema } = require('./graphql')
+const dbConnect = require('../src/db/start')
 
 const createServer = async () => {
   console.log('Creating server...')
+  await dbConnect()
 
   const app = new Koa()
   const router = new Router()
