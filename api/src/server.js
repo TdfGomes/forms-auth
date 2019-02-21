@@ -1,6 +1,7 @@
 const http = require('http')
 const Koa = require('koa')
 const Router = require('koa-router')
+const bodyParser = require('koa-bodyparser')
 const graphqlHTTP = require('koa-graphql')
 const { schema } = require('./graphql')
 const dbConnect = require('../src/db/start')
@@ -20,7 +21,10 @@ const createServer = async () => {
     })
   )
 
-  app.use(router.routes()).use(router.allowedMethods())
+  app
+    .use(bodyParser())
+    .use(router.routes())
+    .use(router.allowedMethods())
 
   const server = http.createServer(app.callback())
 
