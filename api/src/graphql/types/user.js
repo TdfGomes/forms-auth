@@ -1,8 +1,6 @@
 const {
   GraphQLObjectType,
-  GraphQLString,
-  GraphQLNonNull,
-  GraphQLInputObjectType
+  GraphQLString
 } = require('graphql')
 
 const UserType = new GraphQLObjectType({
