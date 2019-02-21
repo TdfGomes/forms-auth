@@ -5,6 +5,7 @@ const bodyParser = require('koa-bodyparser')
 const graphqlHTTP = require('koa-graphql')
 const { schema } = require('./graphql')
 const dbConnect = require('../src/db/start')
+const User = require('../src/db/models')
 
 const createServer = async () => {
   console.log('Creating server...')
@@ -17,7 +18,8 @@ const createServer = async () => {
     '/graphql',
     graphqlHTTP({
       schema,
-      graphiql: true
+      graphiql: true,
+      context: { User }
     })
   )
 
