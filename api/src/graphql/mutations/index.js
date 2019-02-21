@@ -1,6 +1,6 @@
-const { GraphQLObjectType, GraphQLString } = require('graphql')
+const { GraphQLObjectType, GraphQLString, GraphQLNonNull } = require('graphql')
 const { UserType } = require('../types')
-const createUser = require('./createUser')
+const { insertUser } = require('./resolvers')
 
 const Mutations = new GraphQLObjectType({
   name: 'Mutations',
@@ -10,10 +10,10 @@ const Mutations = new GraphQLObjectType({
       args: {
         firstname: { type: GraphQLString },
         surname: { type: GraphQLString },
-        email: { type: GraphQLString },
+        email: { type: new GraphQLNonNull(GraphQLString) },
         password: { type: GraphQLString }
       },
-      resolve: createUser
+      resolve: insertUser
     }
   }
 })
