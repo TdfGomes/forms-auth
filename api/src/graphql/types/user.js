@@ -10,24 +10,13 @@ const UserType = new GraphQLObjectType({
   description: 'User type definition',
   fields: {
     _id: { type: GraphQLString },
-    name: { type: GraphQLString },
+    firstname: { type: GraphQLString },
     surname: { type: GraphQLString },
     email: { type: GraphQLString },
-    phone: { type: GraphQLString },
-    creatAt: { type: GraphQLString },
+    password: { type: GraphQLString },
+    createAt: { type: GraphQLString },
     updateAt: { type: GraphQLString }
   }
 })
 
-const UserInputType = new GraphQLInputObjectType({
-  name: 'CreateUserInput',
-  description: 'Input user payload',
-  fields: {
-    firstname: { type: new GraphQLNonNull(GraphQLString) },
-    surname: { type: new GraphQLNonNull(GraphQLString) },
-    email: { type: new GraphQLNonNull(GraphQLString) },
-    password: { type: new GraphQLNonNull(GraphQLString) }
-  }
-})
-
-module.exports = { UserType, UserInputType }
+module.exports = { UserType }
