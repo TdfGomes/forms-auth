@@ -1,6 +1,6 @@
 const { promisify } = require('util')
 const { UserType } = require('../types')
-const { totalUsers } = require('./users')
+const { totalUsers, allUsers } = require('./users')
 const {
   GraphQLObjectType,
   GraphQLList,
@@ -16,7 +16,7 @@ const UserQuery = new GraphQLObjectType({
     },
     allUsers: {
       type: new GraphQLList(UserType),
-      resolve: () => 'Hello World!'
+      resolve: allUsers
     }
   }
 })

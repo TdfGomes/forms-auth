@@ -8,4 +8,8 @@ const totalUsers = async (_, args, { User }) => {
   return u.length
 }
 
-module.exports = { totalUsers }
+const allUsers = async (_, args, { User }) => {
+  return User.find({}, findAll)
+}
+
+module.exports = { totalUsers, allUsers }
