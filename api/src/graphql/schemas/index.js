@@ -1,20 +1,7 @@
-const {
-  GraphQLObjectType,
-  GraphQLSchema,
-  GraphQLList
-} = require('graphql')
-const { UserType } = require('../types')
-const Mutations = require('../mutations')
+const { GraphQLSchema } = require('graphql')
 
-const UserQuery = new GraphQLObjectType({
-  name: 'UserQuery',
-  fields: {
-    allUsers: {
-      type: new GraphQLList(UserType),
-      resolve: () => 'Hello World!'
-    }
-  }
-})
+const Mutations = require('../mutations')
+const UserQuery = require('../queries').UserQuery
 
 const schema = new GraphQLSchema({
   query: UserQuery,
