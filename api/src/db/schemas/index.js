@@ -4,9 +4,7 @@ const userSchema = new Schema({
   firstname: String,
   surname: String,
   email: { type: String, required: true, unique: true },
-  password: String,
-  createAt: Date,
-  updatedAt: Date
-})
+  password: String
+}, { timestamps: true })
 
 module.exports = { userSchema }
