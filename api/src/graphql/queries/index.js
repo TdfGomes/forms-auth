@@ -1,3 +1,3 @@
 module.exports = {
-  UserQuery: require('./user')
+  UserQuery: require('./users')
 }

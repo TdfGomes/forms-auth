@@ -1,15 +1,23 @@
-const findAll = (error, users) => {
-  if (error) throw new Error(error)
-  return users || []
-}
+const { UserType } = require('../../types')
+const { totalUsers, allUsers } = require('./resolvers')
+const {
+  GraphQLObjectType,
+  GraphQLList,
+  GraphQLInt
+} = require('graphql')
 
-const totalUsers = async (_, args, { User }) => {
-  const u = await User.find({}, findAll)
-  return u.length
-}
+const UserQuery = new GraphQLObjectType({
+  name: 'UserQuery',
+  fields: {
+    totalUsers: {
+      type: GraphQLInt,
+      resolve: totalUsers
+    },
+    allUsers: {
+      type: new GraphQLList(UserType),
+      resolve: allUsers
+    }
+  }
+})
 
-const allUsers = async (_, args, { User }) => {
-  return User.find({}, findAll)
-}
-
-module.exports = { totalUsers, allUsers }
+module.exports = UserQuery
