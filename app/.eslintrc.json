@@ -9,6 +9,15 @@
         "indent": [ "warn",2],
         "indent-props": [ "warn",2],
         "pascal-case": "error",
-        "tag-spacing": [ "error",{"beforeSelfClosing": "always"}]
+        "tag-spacing": [ "error",{"beforeSelfClosing": "always"}],
+        "space-in-brackets": ["error","always"],
+        "sort-comp": [ "error", {
+            "order": [
+                "static-methods",
+                "lifecycle",
+                "everything-else",
+                "render"
+            ]
+        }]
     }
 }
