@@ -5,7 +5,7 @@ WORKDIR /home/node/app
 
 COPY package.json yarn.lock ./
 
-RUN npm install 
+RUN npm install && npm audit fix 
 
 COPY . /home/node/app/
 
