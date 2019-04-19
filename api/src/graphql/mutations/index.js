@@ -8,10 +8,10 @@ const Mutations = new GraphQLObjectType({
     createUser: {
       type: UserType,
       args: {
-        firstname: { type: GraphQLString },
-        surname: { type: GraphQLString },
+        firstname: { type: new GraphQLNonNull(GraphQLString) },
+        surname: { type: new GraphQLNonNull(GraphQLString) },
         email: { type: new GraphQLNonNull(GraphQLString) },
-        password: { type: GraphQLString }
+        password: { type: new GraphQLNonNull(GraphQLString) }
       },
       resolve: insertUser
     },
