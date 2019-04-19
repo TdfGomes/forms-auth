@@ -1,4 +1,4 @@
-export const ROUTES_URL = Object.freeze({
-  home:'/',
-  createUser:'create-user'
+export const ROUTES = Object.freeze({
+  home: '/',
+  createUser: 'create-user'
 })
