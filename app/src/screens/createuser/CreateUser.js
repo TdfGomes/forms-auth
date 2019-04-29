@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import { Button, Heading, TextInputField, Pane } from 'evergreen-ui'
 import Container from '../../components/Container'
-// import { Mutation } from 'react-apollo'
 import { withCreateUser } from '../../graphql'
 
 const initialState = {
@@ -22,9 +22,9 @@ const CreateUser = ({ mutate }) => {
   const handleOnSubmit = e => {
     e.preventDefault()
     const isValid = Object.values(state).every(value => value)
-    mutate(state)
     if (isValid) {
-      alert(JSON.stringify(state))
+      mutate({ variables: { ...state } })
+      console.log(state)
     }
   }
   return (
@@ -76,6 +76,10 @@ const CreateUser = ({ mutate }) => {
       </form>
     </Container>
   )
+}
+
+CreateUser.propTypes = {
+  mutate: PropTypes.func.isRequired
 }
 
 export default withCreateUser(CreateUser)

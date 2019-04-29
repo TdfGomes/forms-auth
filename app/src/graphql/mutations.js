@@ -1,4 +1,4 @@
-import gql from 'graphql-tag'
+import { gql } from 'apollo-boost'
 import { graphql } from 'react-apollo'
 
 export const CREATE_USER = gql`
