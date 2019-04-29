@@ -6,6 +6,7 @@ const graphqlHTTP = require('koa-graphql')
 const { schema } = require('./graphql')
 const dbConnect = require('../src/db/start')
 const User = require('../src/db/models')
+const cors = require('koa2-cors')
 
 const createServer = async () => {
   console.log('Creating server...')
@@ -24,6 +25,7 @@ const createServer = async () => {
   )
 
   app
+    .use(cors())
     .use(bodyParser())
     .use(router.routes())
     .use(router.allowedMethods())
