@@ -45,8 +45,8 @@ describe('<CreateUserForm/>', () => {
   })
 
   it('should call handleSubmit', () => {
-    const { getByTestId } = render(<CreateUserForm {...props} />)
-    const form = getByTestId('form')
+    const { container } = render(<CreateUserForm {...props} />)
+    const form = container.querySelector('form')
 
     fireEvent.submit(form)
 

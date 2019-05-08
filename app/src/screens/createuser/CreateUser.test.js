@@ -15,6 +15,16 @@ describe('<CreateUser/>', () => {
     expect(getByTestId('container')).toBeInTheDocument()
   })
 
+  it('Should have a heading titile', () => {
+    const { container } = render(
+      <MockedProvider mocks={[]}>
+        <CreateUser />
+      </MockedProvider>
+    )
+
+    expect(container.querySelector('h2')).toHaveTextContent(/create/i)
+  })
+
   it('To Match Snapshot', () => {
     const { asFragment } = render(
       <MockedProvider mocks={[]}>

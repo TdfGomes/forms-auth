@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Button, TextInputField, Pane } from 'evergreen-ui'
 
 const CreateUserForm = ({ handleOnSubmit, handleOnChange, inputValues }) => (
-  <form onSubmit={handleOnSubmit} data-testid="form" >
+  <form onSubmit={handleOnSubmit}>
     <Pane display="flex" justifyContent="space-between" width={500}>
       <Pane width="48%" marginBottom={25}>
         <TextInputField
@@ -41,7 +41,7 @@ const CreateUserForm = ({ handleOnSubmit, handleOnChange, inputValues }) => (
       </Pane>
     </Pane>
     <Pane width={500} marginBottom={25} textAlign="right">
-      <Button type="submit" role="submit">Submit</Button>
+      <Button type="submit">Submit</Button>
     </Pane>
   </form>
 )
