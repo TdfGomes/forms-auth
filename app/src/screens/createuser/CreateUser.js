@@ -13,12 +13,14 @@ const initialState = {
 
 const CreateUser = ({ mutate }) => {
   const [state, setState] = useState(initialState)
+
   const handleOnChange = ({ target: { name, value } }) => {
     setState(prevState => ({
       ...prevState,
       [name]: value
     }))
   }
+
   const handleOnSubmit = e => {
     e.preventDefault()
     const isValid = Object.values(state).every(value => value)
@@ -27,8 +29,9 @@ const CreateUser = ({ mutate }) => {
       console.log(state)
     }
   }
+
   return (
-    <Container background="tint1" minHeight="100vh" flexDirection="column">
+    <Container data-testid="container" background="tint1" minHeight="100vh" flexDirection="column">
       <form onSubmit={handleOnSubmit}>
         <Heading size={600} marginBottom={35}>
           Create an User
@@ -42,7 +45,6 @@ const CreateUser = ({ mutate }) => {
               onChange={handleOnChange}
               value={state.firstname}
             />
-
             <TextInputField
               label="Email Address"
               type="email"
