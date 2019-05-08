@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from '@reach/router'
-import { ROUTES } from '../../constants'
+import { ROUTES } from '../../constants'
 
 const Login = () => (
   <Link to={ROUTES.createUser}>
