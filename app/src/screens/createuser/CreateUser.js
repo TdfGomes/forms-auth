@@ -32,7 +32,7 @@ const CreateUser = ({ mutate }) => {
   }
 
   return (
-    <Container data-testid="container" background="tint1" minHeight="100vh" flexDirection="column">
+    <Container flexDirection="column">
       <Fragment>
         <Heading size={600} marginBottom={35}>
           Create an User
