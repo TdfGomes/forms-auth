@@ -11,7 +11,6 @@ const Login = () => {
   }
 
   const [state, setState] = useState(initialState)
-  const [isValid, validate] = useState(false)
 
   const handleOnChange = ({ target: { name, value } }) => {
     setState(prevState => ({
