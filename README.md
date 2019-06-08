@@ -1,7 +1,7 @@
 ## Forms-auth
 
-This project uses React, GraphQL, ApolloClient, NodeJS, MongoDB and Dokcer
-Here I want to try different technologies, libraries to learn and share what I had learn during the process
+This project uses React, GraphQL, ApolloClient, NodeJS, MongoDB and Dokcer <br/>
+Whith this project I want to try different technologies, libraries to learn and share what I had learnt during the process
 
 #### Setup
 
