@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/TdfGomes/forms-auth#readme",
   "dependencies": {
-    "bcrypt": "^3.0.4",
+    "bcrypt": "^5.0.0",
     "graphql": "^14.1.1",
     "koa": "^2.6.2",
     "koa-bodyparser": "^4.2.1",
